@@ -19,9 +19,9 @@ always @(*) begin
         4'b0010: resC_reg = opA & opB;
         4'b0011 : resC_reg = opA | opB;
         4'b0100: resC_reg = opA ^ opB;
-        4'b0101: resC_reg = opA << opB;
-        4'b0110: resC_reg = opA >> opB;
-        4'b0111: resC_reg = ($signed(opA)) >>> opB;
+        4'b0101: resC_reg = opA << opB[5:0];
+        4'b0110: resC_reg = opA >> opB[5:0];
+        4'b0111: resC_reg = ($signed(opA)) >>> opB[5:0];
         4'b1000: branch_reg = opA == opB ? 1'b1 : 1'b0;
         4'b1001: branch_reg = opA == opB ? 1'b0 : 1'b1;
         4'b1010: branch_reg = ($signed(opA)) < ($signed(opB)) ? 1'b1 : 1'b0;

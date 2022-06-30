@@ -12,7 +12,8 @@ module CTRL(
     output wire reg_we      // rf's we
 );
 
-assign reg_we = (opcode == 7'b1100011) ? 1'b0 : 1'b1;
+assign reg_we = (opcode == 7'b1100011 || opcode == 7'b0100011) ? 1'b0 : 1'b1;
+//                    ^ b series               ^ sw
 
 // 00  ---> pc + 4
 // 11  ---> pc + imm(b)
@@ -59,6 +60,7 @@ assign alu_ctrl = (opcode[6:5] == 2'b11) ?
                   (func3[2:0] == 3'b100) ? 4'b0100 :
                   (func3[2:0] == 3'b001) ? 4'b0101 : 
                   (func3[2:0] == 3'b000) ? ((opcode == 7'b0010011) ? 4'b0000 : (func7[5] == 1'b0 ? 4'b0000 : 4'b0001)) :
+                  (func3[2:0] == 3'b010) ? 4'b0000 :
                   (func7[5] == 1'b0) ? 4'b0110 : 4'b0111
                      );
 
@@ -80,7 +82,8 @@ assign alu_ctrl = (opcode[6:5] == 2'b11) ?
 
 // 0 ---> imm
 // 1 ---> rD2
-assign op_B_sel = (opcode[6:4] == 3'b001) ? 1'b0 : 1'b1;
+assign op_B_sel = (opcode[6:4] == 3'b001 || func3[2:0] == 3'b010) ? 1'b0 : 1'b1;
+//                                              ^ lw/sw
 
 // 000 ---> no imm
 // 001 ---> 0000_0000_0000_0000_0000_inst[31:20]
