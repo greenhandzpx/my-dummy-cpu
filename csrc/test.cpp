@@ -55,6 +55,16 @@ int check(WB_info stu, WB_info ref) {
     return 0;
 }
 
+int debug(WB_info stu) {
+    printf("SIGNAL NAME\tREFERENCE\tMYCPU\n");
+    printf("debug_wb_pc\t0x%8.8x\n", stu.wb_pc);
+    printf("debug_wb_ena\t%10d\n", stu.wb_ena);
+    printf("debug_wb_reg\t%10d\n", stu.wb_reg);
+    printf("debug_wb_value\t0x%8.8x\n", stu.wb_value);
+    return 0;
+}
+
+
 int main(int argc, char** argv, char** env) {
     top = new TESTBENCH<Vtop>;
     char dir[1024] = "waveform/";
@@ -78,6 +88,10 @@ int main(int argc, char** argv, char** env) {
             }
         }
     }
+    // for(int i = 0; i < 100; i++) {
+    //     rtl_wb_info = top -> tick();
+    //     debug(rtl_wb_info);
+    // }
     printf("Timed out! Please check whether your CPU got stuck.\n");
     delete top;
     return 0;

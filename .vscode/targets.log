@@ -1,0 +1,367 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed Jun 29 18:46:56 2022
+
+# Variables
+
+# environment
+LC_ALL = C
+# environment
+NEMU_HOME = /home/greenhandzpx/CodeField/ics2021/nemu
+# environment
+WSLENV = ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID
+# environment
+VSCODE_CWD = /mnt/g/vscode/Microsoft VS Code
+# default
+MAKE_COMMAND := make
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# environment
+GOPATH = /home/greenhandzpx/go_path
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# makefile (from 'Makefile', line 6)
+PWD = $(shell pwd)
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+OLDPWD = /mnt/g/vscode/Microsoft VS Code
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+LANG = C
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/greenhandzpx/Downloads/cdp-tests
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+host_ip = 172.22.192.1
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+HISTSIZE = 1800
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+P9K_SSH = 0
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# environment
+CONDA_SHLVL = 0
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 1)
+VSRC = $(wildcard vsrc/* mycpu/*) 
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+CONDA_PYTHON_EXE = /opt/miniconda/bin/python
+# environment
+WT_PROFILE_ID = {8bf2d7ce-4310-535d-8cfe-1fe3b5f5a5b1}
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+P9K_TTY = old
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 3
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /home/greenhandzpx/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/opt/miniconda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/libnvvp:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/g/nodejs/:/mnt/g/new_python/Lib/site-packages/ffmpeg:/mnt/g/xshell/:/mnt/g/xftp/:/mnt/c/Program Files/MySQL/MySQL Server 8.0/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/g/Qt/6.0.4/mingw81_64/bin:/mnt/g/new_python/Scripts:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2019.5.0/:/mnt/g/git/Git/cmd:/mnt/e/python/Scripts/:/mnt/e/python/:/mnt/c/Users/86135/AppData/Local/Programs/Python/Python38/Scripts/:/mnt/c/Users/86135/AppData/Local/Programs/Python/Python38/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/g/new_python/Scripts/:/mnt/g/new_python/:/mnt/c/Users/86135/AppData/Local/Microsoft/WindowsApps:/mnt/g/vscode/Microsoft VS Code/bin:/mnt/g/mingw64/bin:/mnt/c/Users/86135/AppData/Roaming/npm:/mnt/g/ffmpeg-N-102809-gde8e6e67e7-win64-gpl/bin:/mnt/e/downloadFromBrowser/cmake-3.21.1-windows-x86_64/bin:/mnt/g/clion/CLion 2021.3.3/bin:/mnt/g/idea/IntelliJ IDEA 2021.3.2/bin:/mnt/g/git/Git/bin:/mnt/g/vscode/Microsoft VS Code/bin:/mnt/c/Users/86135/Documents/WindowsPowerShell/Modules/oh-my-posh/7.31.1:/mnt/c/java/jdk-17.0.2/bin:/mnt/g/pycharm/PyCharm 2021.3.2/bin:/mnt/g/ngrok/ngrok-stable-windows-amd64:/mnt/g/goland/GoLand 2021.3.4/bin:/mnt/g/neovim/nvim-win64/bin:/mnt/g/texlive/texlive/2022/bin/win32:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/greenhandzpx/Downloads/riscv-pk/build/dist/riscv64-linux-gnu/bin:/home/greenhandzpx/bin
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+WT_SESSION = 5c6c9a2c-8986-447b-a043-d6fc9b6e38a0
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?F = $(notdir $?)
+# environment
+NAME = Code
+# environment
+HOSTTYPE = x86_64
+# automatic
++F = $(notdir $+)
+# environment
+WSL_INTEROP = /run/WSL/9215_interop
+# makefile (from 'Makefile', line 4)
+TEST = addi
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = greenhandzpx
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/86135/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+# makefile
+.DEFAULT_GOAL := build
+# environment
+USER = greenhandzpx
+# default
+MAKE_VERSION := 4.3
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
+# makefile (from 'Makefile', line 2)
+CSRC = $(wildcard golden_model/*.c) $(wildcard golden_model/stage/*.c) $(wildcard golden_model/peripheral/*.c) $(wildcard csrc/*.c csrc/*.cpp)
+# environment
+_ = /usr/sbin/make
+# environment
+_CE_M = 
+# makefile (from 'Makefile', line 5)
+TESTFILE = meminit.bin
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-89905a73-b25e-47e1-aaa2-4852f25f5f3f.sock
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/greenhandzpx
+# environment
+TERM = xterm-256color
+# makefile (from 'Makefile', line 3)
+SIM_OPTS = --trace -Wno-lint -Wno-style -Wno-TIMESCALEMOD
+# environment
+GOPROXY = https://goproxy.cn,direct
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# environment
+AM_HOME = /home/greenhandzpx/CodeField/ics2021/abstract-machine
+# default
+SUFFIXES := 
+# environment
+_P9K_TTY = /dev/pts/1
+# environment
+WSL_DISTRO_NAME = ArchLinux
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
+# environment
+CONDA_EXE = /opt/miniconda/bin/conda
+# environment
+_CE_CONDA = 
+# variable set hash-table stats:
+# Load=86/1024=8%, Rehash=0, Collisions=2/120=2%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# golden_model (device 2064, inode 295000): 6 files, no impossibilities.
+# golden_model/peripheral (device 2064, inode 295020): 6 files, no impossibilities.
+# . (device 2064, inode 181275): 14 files, no impossibilities.
+# vsrc (device 2064, inode 295016): 3 files, no impossibilities.
+# mycpu (device 2064, inode 295013): 3 files, no impossibilities.
+# csrc (device 2064, inode 294997): 4 files, no impossibilities.
+# golden_model/stage (device 2064, inode 295007): 7 files, no impossibilities.
+
+# 43 files, no impossibilities in 7 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+golden_model/peripheral/onboard.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run_for_python:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 15):
+	@ln -sf bin/$(TEST).bin $(TESTFILE)
+	@./obj_dir/Vtop $(TEST)
+	@rm -rf $(TESTFILE)
+
+# Not a target:
+golden_model/emu.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+golden_model/stage/MEM.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+debug:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-29 16:47:13.638226336
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+vsrc/ram.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+golden_model/stage/WB.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+golden_model/stage/IF.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+csrc/test.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+ 
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 21):
+	rm -rf obj_dir waveform $(TESTFILE)
+
+# Not a target:
+mycpu/top.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+run: build
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 12):
+	@ln -sf bin/$(TEST).bin $(TESTFILE)
+	@./obj_dir/Vtop $(TEST)
+
+build: vsrc/ram.v mycpu/top.v golden_model/emu.c golden_model/stage/EX.c golden_model/stage/ID.c golden_model/stage/IF.c golden_model/stage/MEM.c golden_model/stage/WB.c golden_model/peripheral/onboard.c golden_model/peripheral/result_monitor.c csrc/test.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 9):
+	@verilator -cc --exe --build $(VSRC) --top-module top $(CSRC) $(SIM_OPTS) +define+PATH=$(TESTFILE) -CFLAGS -DPATH=$(TESTFILE) -Imycpu -CFLAGS -I$(PWD)/golden_model/include
+	@mkdir -p waveform
+
+# Not a target:
+golden_model/stage/ID.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+golden_model/stage/EX.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+meminit.bin:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 19):
+	ln -sf bin/$(TEST).bin $(TESTFILE)
+
+# Not a target:
+golden_model/peripheral/result_monitor.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: run debug clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=22/1024=2%, Rehash=0, Collisions=0/47=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 56 / storage = 647 B / avg = 11 B
+# current buf: size = 8162 B / used = 647 B / count = 56 / avg = 11 B
+
+# strcache performance: lookups = 85 / hit rate = 34%
+# hash-table stats:
+# Load=56/8192=1%, Rehash=0, Collisions=1/85=1%
+# Finished Make data base on Wed Jun 29 18:46:56 2022
+
+ 
