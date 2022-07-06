@@ -1,0 +1,104 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Wed Jul  6 23:02:44 2022
+| Host         : greeeenhandzpx running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file TOP_control_sets_placed.rpt
+| Design       : TOP
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    38 |
+| Unused register locations in slices containing registers |    14 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      1 |            1 |
+|      8 |            1 |
+|    16+ |           36 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              33 |           32 |
+| No           | No                    | Yes                    |              65 |           27 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |             992 |          503 |
+| Yes          | No                    | Yes                    |              80 |           30 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------+-------------------------------------------+------------------+------------------+----------------+
+|         Clock Signal         |               Enable Signal               | Set/Reset Signal | Slice Load Count | Bel Load Count |
++------------------------------+-------------------------------------------+------------------+------------------+----------------+
+|  u_irom/branch_reg_reg_i_5_0 |                                           |                  |                1 |              1 |
+|  cpu_clk_BUFG                | u_exter_dev/result_display/led_ca_i_1_n_1 | rst_i_IBUF       |                5 |              8 |
+|  cpu_clk_BUFG                | u_exter_dev/result_display/cnt_end        | rst_i_IBUF       |                3 |             16 |
+|  cpu_clk_BUFG                | u_irom/E[0]                               | rst_i_IBUF       |                9 |             24 |
+|  cpu_clk_BUFG                | u_cpu/u_alu/E[0]                          | rst_i_IBUF       |               13 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_1[0]                |                  |               13 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_11[0]               |                  |               16 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_12[0]               |                  |               17 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_13[0]               |                  |               12 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_16[0]               |                  |               18 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_18[0]               |                  |               19 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_19[0]               |                  |               13 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_20[0]               |                  |               19 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_21[0]               |                  |               21 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10][0]                  |                  |               15 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_22[0]               |                  |               14 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_17[0]               |                  |               16 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_23[0]               |                  |               17 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_10[0]               |                  |               15 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_15[0]               |                  |               14 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_0[0]                |                  |               14 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_14[0]               |                  |               18 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_2[0]                |                  |               16 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_24[0]               |                  |               11 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_25[0]               |                  |               14 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_26[0]               |                  |               13 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_6[0]                |                  |               20 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_4[0]                |                  |               18 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_3[0]                |                  |               15 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_29[0]               |                  |               22 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_27[0]               |                  |               12 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_7[0]                |                  |               20 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_8[0]                |                  |               15 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_9[0]                |                  |               20 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_28[0]               |                  |               17 |             32 |
+|  cpu_clk_BUFG                | u_irom/bbstub_spo[10]_5[0]                |                  |               19 |             32 |
+|  n_0_171_BUFG                |                                           |                  |               31 |             32 |
+|  cpu_clk_BUFG                |                                           | rst_i_IBUF       |               27 |             65 |
++------------------------------+-------------------------------------------+------------------+------------------+----------------+
+
+
