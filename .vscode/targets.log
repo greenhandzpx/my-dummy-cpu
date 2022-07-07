@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun 29 18:46:56 2022
+# Make data base, printed on Thu Jul  7 17:26:37 2022
 
 # Variables
 
@@ -53,15 +53,15 @@ LANG = C
 # makefile
 MAKEFLAGS = pqrR
 # makefile
-CURDIR := /home/greenhandzpx/Downloads/cdp-tests
+CURDIR := /home/greenhandzpx/CodeField/my-dummy-cpu
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-host_ip = 172.22.192.1
+host_ip = 192.168.64.1
 # environment
 MFLAGS = -pqrR
 # default
@@ -115,7 +115,7 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-WT_SESSION = 5c6c9a2c-8986-447b-a043-d6fc9b6e38a0
+WT_SESSION = 5ca875b6-2f71-49bf-bb3a-de731183c763
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -127,7 +127,7 @@ HOSTTYPE = x86_64
 # automatic
 +F = $(notdir $+)
 # environment
-WSL_INTEROP = /run/WSL/9215_interop
+WSL_INTEROP = /run/WSL/10_interop
 # makefile (from 'Makefile', line 4)
 TEST = addi
 # 'override' directive
@@ -155,7 +155,7 @@ _CE_M =
 # makefile (from 'Makefile', line 5)
 TESTFILE = meminit.bin
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-89905a73-b25e-47e1-aaa2-4852f25f5f3f.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-081aeb15-765f-4ce4-bdb6-bd4c2e3db0f3.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -175,7 +175,7 @@ AM_HOME = /home/greenhandzpx/CodeField/ics2021/abstract-machine
 # default
 SUFFIXES := 
 # environment
-_P9K_TTY = /dev/pts/1
+_P9K_TTY = /dev/pts/0
 # environment
 WSL_DISTRO_NAME = ArchLinux
 # default
@@ -193,15 +193,15 @@ _CE_CONDA =
 
 # Directories
 
-# golden_model (device 2064, inode 295000): 6 files, no impossibilities.
-# golden_model/peripheral (device 2064, inode 295020): 6 files, no impossibilities.
-# . (device 2064, inode 181275): 14 files, no impossibilities.
-# vsrc (device 2064, inode 295016): 3 files, no impossibilities.
-# mycpu (device 2064, inode 295013): 3 files, no impossibilities.
-# csrc (device 2064, inode 294997): 4 files, no impossibilities.
-# golden_model/stage (device 2064, inode 295007): 7 files, no impossibilities.
+# golden_model (device 2064, inode 309942): 6 files, no impossibilities.
+# golden_model/peripheral (device 2064, inode 309949): 6 files, no impossibilities.
+# . (device 2064, inode 309762): 15 files, no impossibilities.
+# vsrc (device 2064, inode 309976): 3 files, no impossibilities.
+# mycpu (device 2064, inode 309960): 18 files, no impossibilities.
+# csrc (device 2064, inode 309939): 4 files, no impossibilities.
+# golden_model/stage (device 2064, inode 309954): 7 files, no impossibilities.
 
-# 43 files, no impossibilities in 7 directories.
+# 59 files, no impossibilities in 7 directories.
 
 # Implicit Rules
 
@@ -210,7 +210,31 @@ _CE_CONDA =
 # Files
 
 # Not a target:
+mycpu/CTRL.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/param.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 golden_model/peripheral/onboard.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/NPC.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/CPU.v:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -236,6 +260,12 @@ golden_model/stage/MEM.c:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+mycpu/IROM.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 debug:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
@@ -245,8 +275,9 @@ debug:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-29 16:47:13.638226336
+#  Last modified 2022-07-07 12:26:12.07973714
 #  File has been updated.
+ 
 #  Successfully updated.
 
 # Not a target:
@@ -276,11 +307,16 @@ csrc/test.cpp:
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
- 
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 21):
 	rm -rf obj_dir waveform $(TESTFILE)
+
+# Not a target:
+mycpu/MEM_WB.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 mycpu/top.v:
@@ -289,7 +325,37 @@ mycpu/top.v:
 #  File has not been updated.
 
 # Not a target:
+mycpu/ALU.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/DRAM.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/PC.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/cpuclk_sim.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 .DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/ID_EX.v:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -310,7 +376,7 @@ run: build
 	@ln -sf bin/$(TEST).bin $(TESTFILE)
 	@./obj_dir/Vtop $(TEST)
 
-build: vsrc/ram.v mycpu/top.v golden_model/emu.c golden_model/stage/EX.c golden_model/stage/ID.c golden_model/stage/IF.c golden_model/stage/MEM.c golden_model/stage/WB.c golden_model/peripheral/onboard.c golden_model/peripheral/result_monitor.c csrc/test.cpp
+build: vsrc/ram.v mycpu/ALU.v mycpu/CPU.v mycpu/CTRL.v mycpu/DRAM.v mycpu/EX_MEM.v mycpu/ID_EX.v mycpu/IF_ID.v mycpu/IROM.v mycpu/MEM_WB.v mycpu/NPC.v mycpu/PC.v mycpu/RF.v mycpu/SEXT.v mycpu/cpuclk_sim.v mycpu/param.v mycpu/top.v golden_model/emu.c golden_model/stage/EX.c golden_model/stage/ID.c golden_model/stage/IF.c golden_model/stage/MEM.c golden_model/stage/WB.c golden_model/peripheral/onboard.c golden_model/peripheral/result_monitor.c csrc/test.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -319,7 +385,31 @@ build: vsrc/ram.v mycpu/top.v golden_model/emu.c golden_model/stage/EX.c golden_
 	@mkdir -p waveform
 
 # Not a target:
+mycpu/SEXT.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 golden_model/stage/ID.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/EX_MEM.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/IF_ID.v:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+mycpu/RF.v:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -349,19 +439,19 @@ golden_model/peripheral/result_monitor.c:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=22/1024=2%, Rehash=0, Collisions=0/47=0%
+# Load=37/1024=4%, Rehash=0, Collisions=2/77=3%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 56 / storage = 647 B / avg = 11 B
-# current buf: size = 8162 B / used = 647 B / count = 56 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 87 / storage = 977 B / avg = 11 B
+# current buf: size = 8162 B / used = 977 B / count = 87 / avg = 11 B
 
-# strcache performance: lookups = 85 / hit rate = 34%
+# strcache performance: lookups = 116 / hit rate = 25%
 # hash-table stats:
-# Load=56/8192=1%, Rehash=0, Collisions=1/85=1%
-# Finished Make data base on Wed Jun 29 18:46:56 2022
+# Load=87/8192=1%, Rehash=0, Collisions=1/116=1%
+# Finished Make data base on Thu Jul  7 17:26:37 2022
 
  

@@ -9,7 +9,7 @@ module top(
     output [31:0] debug_wb_value        // WB阶段写入寄存器的值 (若wb_ena或wb_have_inst=0，此项可为任意值)
 );
 
-wire [31:0] inst;
+wire [31:0] if_inst;
 wire [31:0] RD;
 wire [31:0] pc;
 wire [31:0] resC;
@@ -21,13 +21,14 @@ CPU u_cpu(
     .clk(clk),
     .rst_n(rst_n),
 
-    .inst(inst),
-    .RD(RD),
+    .if_inst_i(if_inst),
+    .RD_i(RD),
+
     // output 
-    .pc(pc),
-    .resC(resC),
-    .rD2(rD2),
-    .mem_write(mem_write),
+    .pc_o(pc),
+    .mem_resC_o(resC),
+    .mem_rD2_o(rD2),
+    .mem_mem_write_o(mem_write),
 
     .debug_wb_have_inst (debug_wb_have_inst),
     .debug_wb_pc        (debug_wb_pc),
@@ -37,12 +38,15 @@ CPU u_cpu(
 );
 
 
-
 // 下面两个模块，只需要实例化并连线，不需要添加文件
-inst_mem imem(
-    .a (pc[15:2]),
-    .spo (inst)
+IROM imem(
+    .pc (pc),
+    .inst (if_inst)
 );
+// inst_mem imem(
+//     .a (pc[15:2]),
+//     .spo (inst)
+// );
 
 data_mem dmem(
     .clk(clk),
