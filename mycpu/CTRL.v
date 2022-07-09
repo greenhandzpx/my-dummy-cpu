@@ -11,13 +11,16 @@ module CTRL(
     output wire [2:0] sext_op,
     output wire reg_we,      // rf's we
     output wire rD1_re,  // register 1 read enable
-    output wire rD2_re   // register 2 read enable
+    output wire rD2_re,  // register 2 read enable
+    output wire mem_read // memory read enable
 );
 
 // Only lui & jal don't have rs1.
 assign rD1_re = (opcode == 7'b0110111 || opcode == 7'b1101111) ? 1'b0 : 1'b1;
 // Only R series & B series have rs2
 assign rD2_re = (opcode == 7'b0110011 || opcode == 7'b1100011) ? 1'b1 : 1'b0;
+
+assign mem_read = (opcode == 7'b0000011);
 
 
 assign reg_we = (opcode == 7'b1100011 || opcode == 7'b0100011) ? 1'b0 : 1'b1;

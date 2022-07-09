@@ -30,9 +30,9 @@ wire [3:0] id_alu_ctrl;
 wire id_op_B_sel;
 wire [2:0] sext_op;
 wire id_mem_write;
-assign mem_write = id_mem_write;
 wire rD1_re;  // register1 read enable
 wire rD2_re;  // register2 read enable
+wire mem_read;// memory read enable
 
 
 // rf
@@ -65,6 +65,7 @@ wire [31:0] id_opB;
 // pipeline stop signal
 wire [1:0] pipeline_stop;
 wire [1:0] pipeline_stop_branch;
+wire [1:0] pipeline_stop_load_use;
 
 // IF/ID
 wire [31:0] if_pc4 = pc_o + 3'h4;
@@ -73,7 +74,7 @@ wire [31:0] id_inst;
 IF_ID u_if_id(
     .clk(clk),
     .rst_n(rst_n),
-    .pipeline_stop_i(pipeline_stop),
+    .pipeline_stop_i(pipeline_stop_load_use),
     .pipeline_stop_branch_i(pipeline_stop_branch),
 
     .if_pc4_i(if_pc4),
@@ -97,12 +98,12 @@ wire [31:0] ex_rD2;
 wire [31:0] ex_ext;
 wire [31:0] ex_pc4;
 wire [4:0] ex_wR;
-
-wire pipeline_stop_id_ex = 1'b0;
+wire ex_mem_read;
+// wire pipeline_stop_id_ex = 1'b0;
 ID_EX u_id_ex(
     .clk(clk),
     .rst_n(rst_n),
-    .pipeline_stop_i(pipeline_stop_id_ex),
+    .pipeline_stop_i(pipeline_stop_load_use),
 
     .id_pc_sel_i(id_pc_sel),
     .id_reg_write_i(id_reg_write),
@@ -117,6 +118,7 @@ ID_EX u_id_ex(
     .id_ext_i(ext),
     .id_pc4_i(id_pc4),
     .id_wR_i(id_inst[11:7]),
+    .id_mem_read_i(mem_read),
 
     .ex_pc_sel_o(ex_pc_sel),
     .ex_reg_write_o(ex_reg_write),
@@ -130,7 +132,8 @@ ID_EX u_id_ex(
     .ex_rD2_o(ex_rD2),
     .ex_ext_o(ex_ext),
     .ex_pc4_o(ex_pc4),
-    .ex_wR_o(ex_wR)
+    .ex_wR_o(ex_wR),
+    .ex_mem_read_o(ex_mem_read)
 );
 
 // EX/MEM
@@ -142,6 +145,7 @@ wire mem_reg_we;
 wire [31:0] mem_ext;
 wire [31:0] mem_pc4;
 wire [4:0] mem_wR;
+wire mem_mem_read;
 wire pipeline_stop_ex_mem = 1'b0;
 EX_MEM u_ex_mem(
     .clk(clk),
@@ -156,6 +160,7 @@ EX_MEM u_ex_mem(
     .ex_ext_i(ex_ext),
     .ex_pc4_i(ex_pc4),
     .ex_wR_i(ex_wR),
+    .ex_mem_read_i(ex_mem_read),
 
     .mem_reg_write_o(mem_reg_write),
     .mem_mem_write_o(mem_mem_write_o),
@@ -164,7 +169,8 @@ EX_MEM u_ex_mem(
     .mem_rD2_o(mem_rD2_o),
     .mem_ext_o(mem_ext),
     .mem_pc4_o(mem_pc4),
-    .mem_wR_o(mem_wR)
+    .mem_wR_o(mem_wR),
+    .mem_mem_read_o(mem_mem_read)
 );
 
 // MEM/WB
@@ -200,6 +206,8 @@ wire rs2_id_mem_hazard = !rs2_id_ex_hazard & (mem_wR != 5'h0 && mem_wR == id_ins
 wire rs1_id_wb_hazard = !rs1_id_mem_hazard & (wb_wR != 5'h0 && wb_wR == id_inst[19:15]) & wb_reg_we & rD1_re;
 wire rs2_id_wb_hazard = !rs2_id_mem_hazard & (wb_wR != 5'h0 && wb_wR == id_inst[24:20]) & wb_reg_we & rD2_re;
 // 4. load-use hazard
+wire rs1_load_use_hazard = ex_mem_read & (ex_wR != 5'h0) & (ex_wR == id_inst[19:15]) & ex_reg_we & rD1_re;
+wire rs2_load_use_hazard = ex_mem_read & (ex_wR != 5'h0) & (ex_wR == id_inst[24:20]) & ex_reg_we & rD2_re;
 
 // control hazards
 // jalr, jal, b series
@@ -212,11 +220,15 @@ assign pipeline_stop = 2'h0;
 //                        (rs1_id_mem_hazard | rs2_id_mem_hazard) ? 2'h2 :
 //                        (rs1_id_wb_hazard | rs2_id_wb_hazard) ? 2'h1 : 2'h0;
 
+// branch stop
 assign pipeline_stop_branch = branch_hazard ? 2'h2 : 2'h0;
+// load-use stop
+assign pipeline_stop_load_use = rs1_load_use_hazard | rs2_load_use_hazard;
+
 
 // forward data 
 assign id_opA = rs1_id_ex_hazard ? resC : 
-                rs1_id_mem_hazard ? mem_resC_o :
+                rs1_id_mem_hazard ? (mem_mem_read ? RD_i : mem_resC_o) :
                 rs1_id_wb_hazard ? wb_wD :
                 rD1;
 
@@ -233,7 +245,7 @@ PC u_pc(
     .clk(clk),
     .rst_n(rst_n),
     .npc(npc),
-    .pipeline_stop_i(pipeline_stop),
+    .pipeline_stop_i(pipeline_stop_load_use),
     .pipeline_stop_branch_i(pipeline_stop_branch),
 
     // output
@@ -271,7 +283,8 @@ CTRL u_ctrl(
     .sext_op(sext_op),
     .reg_we(id_reg_we),
     .rD1_re(rD1_re),
-    .rD2_re(rD2_re)
+    .rD2_re(rD2_re),
+    .mem_read(mem_read)
 );
 
 SEXT u_sext(
@@ -323,6 +336,7 @@ assign debug_wb_reg = wb_wR;
 // assign debug_wb_value = ex_alu_ctrl;
 // assign debug_wb_value = id_inst[24:20];
 assign debug_wb_value = wb_wD;
+// assign debug_wb_value = rs1_load_use_hazard;
 // assign debug_wb_value ={24'h0, 3'b000, pipeline_stop, 3'b000,pipeline_stop_branch};
 // assign debug_wb_value = RD_i;
 // assign debug_wb_value = ex_pc_sel;

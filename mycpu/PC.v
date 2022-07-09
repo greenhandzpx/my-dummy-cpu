@@ -34,11 +34,11 @@ always @(posedge clk or negedge rst_n) begin
         // next_iter <= 1'b1;
     end
     else if (pipeline_stop_i) begin
-        // pipeline_stop_first <= pipeline_stop_i > pipeline_stop_branch_i ? 
-        //                         pipeline_stop_i : pipeline_stop_branch_i;
+        // load-use hazard: freeze
         pc <= pc;
     end
     else if (pipeline_stop_branch_i) begin
+        // control hazard: send a dirty(invalid) pc
         pc <= 32'hffff_ff00;
     end 
     // else if ((pipeline_stop_i || pipeline_stop_branch_i) && !pipeline_stop_first) begin

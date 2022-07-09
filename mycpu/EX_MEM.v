@@ -12,6 +12,7 @@ module EX_MEM(
   input wire [31:0] ex_pc4_i,
   input wire [4:0] ex_wR_i,
   input wire ex_debug_wb_have_inst_i,
+  input wire ex_mem_read_i,
 
   output reg [1:0] mem_reg_write_o,
   output reg [1:0] mem_mem_write_o,
@@ -21,7 +22,8 @@ module EX_MEM(
   output reg [31:0] mem_ext_o,
   output reg [31:0] mem_pc4_o,
   output reg [4:0] mem_wR_o,
-  output reg mem_debug_wb_have_inst_o
+  output reg mem_debug_wb_have_inst_o,
+  output reg mem_mem_read_o
 );
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -122,5 +124,15 @@ always @(posedge clk or negedge rst_n) begin
         mem_debug_wb_have_inst_o <= ex_debug_wb_have_inst_i;
     end
 end
-
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        mem_mem_read_o <= 1'h0;
+    end
+    else if (pipeline_stop_i) begin
+        mem_mem_read_o <= mem_mem_read_o;
+    end
+    else begin
+        mem_mem_read_o <= ex_mem_read_i;
+    end
+end
 endmodule

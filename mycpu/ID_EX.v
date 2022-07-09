@@ -17,6 +17,7 @@ module ID_EX(
   input wire [31:0] id_pc4_i,
   input wire [4:0] id_wR_i,
   input wire id_debug_wb_have_inst_i,
+  input wire id_mem_read_i,
 
   output reg [1:0] ex_pc_sel_o,
   output reg [1:0] ex_reg_write_o,
@@ -31,7 +32,8 @@ module ID_EX(
   output reg [31:0] ex_ext_o,
   output reg [31:0] ex_pc4_o,
   output reg [4:0] ex_wR_o,
-  output reg ex_debug_wb_have_inst_o
+  output reg ex_debug_wb_have_inst_o,
+  output reg ex_mem_read_o
 );
 
 
@@ -67,7 +69,9 @@ always @(posedge clk or negedge rst_n) begin
         ex_mem_write_o <= 1'h0;
     end
     else if (pipeline_stop_i) begin
-        ex_mem_write_o <= ex_mem_write_o;
+        // load-use hazard: clear the mem_write signal
+        ex_mem_write_o <= 1'b0;
+        // ex_mem_write_o <= ex_mem_write_o;
     end
     else begin
         ex_mem_write_o <= id_mem_write_i;
@@ -111,7 +115,8 @@ always @(posedge clk or negedge rst_n) begin
         ex_reg_we_o <= 1'h0;
     end
     else if (pipeline_stop_i) begin
-        ex_reg_we_o <= ex_reg_we_o;
+        // load-use hazard: clear the reg_write signal
+        ex_reg_we_o <= 1'h0;
     end
     else begin
         ex_reg_we_o <= id_reg_we_i;
@@ -166,7 +171,9 @@ always @(posedge clk or negedge rst_n) begin
         ex_pc4_o <= 32'h0;
     end
     else if (pipeline_stop_i) begin
-        ex_pc4_o <= ex_pc4_o;
+        // load-use hazard: send a dirty(invalid) pc
+        ex_pc4_o <= 32'hffff_ff00;
+        // ex_pc4_o <= ex_pc4_o;
     end
     else begin
         ex_pc4_o <= id_pc4_i;
@@ -194,7 +201,17 @@ always @(posedge clk or negedge rst_n) begin
         ex_debug_wb_have_inst_o <= id_debug_wb_have_inst_i;
     end
 end
-
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        ex_mem_read_o <= 1'b0;
+    end
+    else if (pipeline_stop_i) begin
+        ex_mem_read_o <= 1'b0;
+    end
+    else begin
+        ex_mem_read_o <= id_mem_read_i;
+    end
+end
 
 
 
