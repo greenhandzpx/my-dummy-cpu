@@ -85,6 +85,7 @@ IF_ID u_if_id(
 );
 
 // ID/EX
+wire [31:0] id_rD2;
 wire [1:0] ex_pc_sel;
 wire [1:0] ex_reg_write;
 wire ex_mem_write;
@@ -114,7 +115,7 @@ ID_EX u_id_ex(
     .id_reg_we_i(id_reg_we),
     .id_opA_i(id_opA),
     .id_opB_i(id_opB),
-    .id_rD2_i(rD2),
+    .id_rD2_i(id_rD2),  // sw (should handle hazard)
     .id_ext_i(ext),
     .id_pc4_i(id_pc4),
     .id_wR_i(id_inst[11:7]),
@@ -140,8 +141,6 @@ ID_EX u_id_ex(
 wire [1:0] mem_reg_write;
 // wire [1:0] mem_mem_write;
 wire mem_reg_we;
-// wire [31:0] mem_resC;
-// wire [31:0] mem_rD2;
 wire [31:0] mem_ext;
 wire [31:0] mem_pc4;
 wire [4:0] mem_wR;
@@ -232,11 +231,18 @@ assign id_opA = rs1_id_ex_hazard ? resC :
                 rs1_id_wb_hazard ? wb_wD :
                 rD1;
 
-assign id_opB = rs2_id_ex_hazard ? resC : 
+// assign id_opB = rs2_id_ex_hazard ? resC : 
+//                 rs2_id_mem_hazard ? mem_resC_o :
+//                 rs2_id_wb_hazard ? wb_wD :
+//                 (id_op_B_sel == 1'b0) ? ext : rD2;
+assign id_opB = (id_op_B_sel == 1'b0) ? ext : 
+                    rs2_id_ex_hazard ? resC : 
+                    rs2_id_mem_hazard ? mem_resC_o :
+                    rs2_id_wb_hazard ? wb_wD : rD2;
+// used for sw
+assign id_rD2 = rs2_id_ex_hazard ? resC : 
                 rs2_id_mem_hazard ? mem_resC_o :
-                rs2_id_wb_hazard ? wb_wD :
-                (id_op_B_sel == 1'b0) ? ext : rD2;
-
+                rs2_id_wb_hazard ? wb_wD : rD2;
 
 
 

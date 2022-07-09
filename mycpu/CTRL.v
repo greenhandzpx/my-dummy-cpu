@@ -17,8 +17,8 @@ module CTRL(
 
 // Only lui & jal don't have rs1.
 assign rD1_re = (opcode == 7'b0110111 || opcode == 7'b1101111) ? 1'b0 : 1'b1;
-// Only R series & B series have rs2
-assign rD2_re = (opcode == 7'b0110011 || opcode == 7'b1100011) ? 1'b1 : 1'b0;
+// Only R series & B series & sw have rs2
+assign rD2_re = (opcode == 7'b0110011 || opcode == 7'b1100011 || opcode == 7'b0100011) ? 1'b1 : 1'b0;
 
 assign mem_read = (opcode == 7'b0000011);
 
