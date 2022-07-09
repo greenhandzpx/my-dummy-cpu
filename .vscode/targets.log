@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul  7 17:26:37 2022
+# Make data base, printed on Fri Jul  8 14:49:23 2022
 
 # Variables
 
@@ -61,7 +61,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-host_ip = 192.168.64.1
+host_ip = 172.17.48.1
 # environment
 MFLAGS = -pqrR
 # default
@@ -115,7 +115,7 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-WT_SESSION = 5ca875b6-2f71-49bf-bb3a-de731183c763
+WT_SESSION = 0205c9b4-8b6b-4cfb-8113-335ea5ab5162
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -155,7 +155,7 @@ _CE_M =
 # makefile (from 'Makefile', line 5)
 TESTFILE = meminit.bin
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-081aeb15-765f-4ce4-bdb6-bd4c2e3db0f3.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-3dd5b280-d1cd-4ef0-9bd5-7d535cbdc078.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -195,13 +195,13 @@ _CE_CONDA =
 
 # golden_model (device 2064, inode 309942): 6 files, no impossibilities.
 # golden_model/peripheral (device 2064, inode 309949): 6 files, no impossibilities.
-# . (device 2064, inode 309762): 15 files, no impossibilities.
+# . (device 2064, inode 309762): 18 files, no impossibilities.
 # vsrc (device 2064, inode 309976): 3 files, no impossibilities.
 # mycpu (device 2064, inode 309960): 18 files, no impossibilities.
 # csrc (device 2064, inode 309939): 4 files, no impossibilities.
 # golden_model/stage (device 2064, inode 309954): 7 files, no impossibilities.
 
-# 59 files, no impossibilities in 7 directories.
+# 62 files, no impossibilities in 7 directories.
 
 # Implicit Rules
 
@@ -277,8 +277,8 @@ Makefile:
 #  Implicit rule search has been done.
 #  Last modified 2022-07-07 12:26:12.07973714
 #  File has been updated.
- 
 #  Successfully updated.
+ 
 
 # Not a target:
 vsrc/ram.v:
@@ -446,12 +446,12 @@ golden_model/peripheral/result_monitor.c:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 87 / storage = 977 B / avg = 11 B
-# current buf: size = 8162 B / used = 977 B / count = 87 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 89 / storage = 994 B / avg = 11 B
+# current buf: size = 8162 B / used = 994 B / count = 89 / avg = 11 B
 
-# strcache performance: lookups = 116 / hit rate = 25%
+# strcache performance: lookups = 119 / hit rate = 25%
 # hash-table stats:
-# Load=87/8192=1%, Rehash=0, Collisions=1/116=1%
-# Finished Make data base on Thu Jul  7 17:26:37 2022
+# Load=89/8192=1%, Rehash=0, Collisions=1/119=1%
+# Finished Make data base on Fri Jul  8 14:49:23 2022
 
  

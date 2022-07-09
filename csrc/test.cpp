@@ -42,7 +42,7 @@ int check(WB_info stu, WB_info ref) {
             fail = 1;
         }
     }
-    // if(fail) {
+    if(fail) {
         printf("[difftest] Test Failed!\n");
         printf("=========== Diffrence ===========\n");
         printf("SIGNAL NAME\tREFERENCE\tMYCPU\n");
@@ -50,8 +50,8 @@ int check(WB_info stu, WB_info ref) {
         printf("debug_wb_ena\t%10d\t%10d\n", ref.wb_ena, stu.wb_ena);
         printf("debug_wb_reg\t%10d\t%10d\n", ref.wb_reg, stu.wb_reg);
         printf("debug_wb_value\t0x%8.8x\t0x%8.8x\n", ref.wb_value, stu.wb_value);
-    //     exit(-1);
-    // }
+        exit(-1);
+    }
     return 0;
 }
 
@@ -61,6 +61,7 @@ int debug(WB_info stu) {
     printf("debug_wb_ena\t%10d\n", stu.wb_ena);
     printf("debug_wb_reg\t%10d\n", stu.wb_reg);
     printf("debug_wb_value\t0x%8.8x\n", stu.wb_value);
+    printf("\n");
     return 0;
 }
 
@@ -80,8 +81,10 @@ int main(int argc, char** argv, char** env) {
 
     printf("[difftest] Test Start!\n");
     WB_info rtl_wb_info, model_wb_info;
+    // for(int i = 0; i < 1000; i++) {
     for(int i = 0; i < 1000000; i++) {
         rtl_wb_info = top -> tick();
+        // debug(rtl_wb_info);
         if(rtl_wb_info.wb_have_inst) {
             if(check(rtl_wb_info, cpu_run_once()) == -1) {
                 break;

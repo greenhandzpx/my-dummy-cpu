@@ -7,8 +7,13 @@ module RF(
     input wire[4:0] wR,
     input wire[31:0] WD,
     output wire[31:0] rD1,
-    output wire[31:0] rD2
+    output wire[31:0] rD2,
+    // debug
+    output wire [31:0] debug_x4
 );
+
+assign debug_x4 = registers[3'h4];
+
 
 reg[31:0] registers[31:0];
 

@@ -31,18 +31,20 @@ wire id_op_B_sel;
 wire [2:0] sext_op;
 wire id_mem_write;
 assign mem_write = id_mem_write;
+wire rD1_re;  // register1 read enable
+wire rD2_re;  // register2 read enable
 
 
 // rf
 wire id_reg_we;
 wire [31:0] wD; 
 wire [31:0] rD1;
-// wire [31:0] rD2;
+wire [31:0] rD2;
 
 // alu
 wire [31:0] opB;
 wire alu_branch;
-// wire [31:0] resC;
+wire [31:0] resC;
 
 // npc
 wire jump;
@@ -54,9 +56,15 @@ wire [31:0] ext;
 // dm
 // wire [31:0] RD;  
 
-wire [31:0] id_opA = rD1;
-wire [31:0] id_opB = (id_op_B_sel == 1'b0) ? ext : rD2;
+// wire [31:0] id_opA = rD1;
+// wire [31:0] id_opB = (id_op_B_sel == 1'b0) ? ext : rD2;
+wire [31:0] id_opA;
+wire [31:0] id_opB;
 
+
+// pipeline stop signal
+wire [1:0] pipeline_stop;
+wire [1:0] pipeline_stop_branch;
 
 // IF/ID
 wire [31:0] if_pc4 = pc_o + 3'h4;
@@ -65,6 +73,8 @@ wire [31:0] id_inst;
 IF_ID u_if_id(
     .clk(clk),
     .rst_n(rst_n),
+    .pipeline_stop_i(pipeline_stop),
+    .pipeline_stop_branch_i(pipeline_stop_branch),
 
     .if_pc4_i(if_pc4),
     .if_inst_i(if_inst_i),
@@ -86,9 +96,13 @@ wire [31:0] ex_opB;
 wire [31:0] ex_rD2;
 wire [31:0] ex_ext;
 wire [31:0] ex_pc4;
+wire [4:0] ex_wR;
+
+wire pipeline_stop_id_ex = 1'b0;
 ID_EX u_id_ex(
     .clk(clk),
     .rst_n(rst_n),
+    .pipeline_stop_i(pipeline_stop_id_ex),
 
     .id_pc_sel_i(id_pc_sel),
     .id_reg_write_i(id_reg_write),
@@ -102,6 +116,7 @@ ID_EX u_id_ex(
     .id_rD2_i(rD2),
     .id_ext_i(ext),
     .id_pc4_i(id_pc4),
+    .id_wR_i(id_inst[11:7]),
 
     .ex_pc_sel_o(ex_pc_sel),
     .ex_reg_write_o(ex_reg_write),
@@ -114,7 +129,8 @@ ID_EX u_id_ex(
     .ex_opA_o(ex_opA),
     .ex_rD2_o(ex_rD2),
     .ex_ext_o(ex_ext),
-    .ex_pc4_o(ex_pc4)
+    .ex_pc4_o(ex_pc4),
+    .ex_wR_o(ex_wR)
 );
 
 // EX/MEM
@@ -125,9 +141,12 @@ wire mem_reg_we;
 // wire [31:0] mem_rD2;
 wire [31:0] mem_ext;
 wire [31:0] mem_pc4;
+wire [4:0] mem_wR;
+wire pipeline_stop_ex_mem = 1'b0;
 EX_MEM u_ex_mem(
     .clk(clk),
     .rst_n(rst_n),
+    .pipeline_stop_i(pipeline_stop_ex_mem),
 
     .ex_reg_write_i(ex_reg_write),
     .ex_mem_write_i(ex_mem_write),
@@ -136,6 +155,7 @@ EX_MEM u_ex_mem(
     .ex_rD2_i(ex_rD2),
     .ex_ext_i(ex_ext),
     .ex_pc4_i(ex_pc4),
+    .ex_wR_i(ex_wR),
 
     .mem_reg_write_o(mem_reg_write),
     .mem_mem_write_o(mem_mem_write_o),
@@ -143,23 +163,65 @@ EX_MEM u_ex_mem(
     .mem_resC_o(mem_resC_o),
     .mem_rD2_o(mem_rD2_o),
     .mem_ext_o(mem_ext),
-    .mem_pc4_o(mem_pc4)
+    .mem_pc4_o(mem_pc4),
+    .mem_wR_o(mem_wR)
 );
-
 
 // MEM/WB
 wire wb_reg_we;
 wire [31:0] wb_wD;
+wire [4:0] wb_wR;
+wire pipeline_stop_mem_wb = 1'b0;
+wire [31:0] wb_pc4_debug;
 MEM_WB u_mem_wb(
     .clk(clk),
     .rst_n(rst_n),
+    .pipeline_stop_i(pipeline_stop_mem_wb),
 
     .mem_reg_we_i(mem_reg_we),
     .mem_wD_i(wD),
+    .mem_wR_i(mem_wR),
+    .mem_pc4_i_debug(mem_pc4),
 
     .wb_reg_we_o(wb_reg_we),
-    .wb_wD_o(wb_wD)
+    .wb_wD_o(wb_wD),
+    .wb_wR_o(wb_wR),
+    .wb_pc4_o_debug(wb_pc4_debug)
 );
+
+// hazards
+// 1. ID EX hazard
+wire rs1_id_ex_hazard = (ex_wR != 5'h0 && ex_wR == id_inst[19:15]) & ex_reg_we & rD1_re;
+wire rs2_id_ex_hazard = (ex_wR != 5'h0 && ex_wR == id_inst[24:20]) & ex_reg_we & rD2_re;
+// 2. ID MEM hazard
+wire rs1_id_mem_hazard = !rs1_id_ex_hazard & (mem_wR != 5'h0 && mem_wR == id_inst[19:15]) & mem_reg_we & rD1_re;
+wire rs2_id_mem_hazard = !rs2_id_ex_hazard & (mem_wR != 5'h0 && mem_wR == id_inst[24:20]) & mem_reg_we & rD2_re;
+// 3. ID WB hazard
+wire rs1_id_wb_hazard = !rs1_id_mem_hazard & (wb_wR != 5'h0 && wb_wR == id_inst[19:15]) & wb_reg_we & rD1_re;
+wire rs2_id_wb_hazard = !rs2_id_mem_hazard & (wb_wR != 5'h0 && wb_wR == id_inst[24:20]) & wb_reg_we & rD2_re;
+// jalr, jal, b series
+wire branch_hazard = (id_inst[6:0] == 7'b1100111 || id_inst[6:0] == 7'b1100011 || id_inst[6:0] == 7'b1101111) &
+                        !ex_ctrl_branch;
+
+// pipeline stop signal
+assign pipeline_stop = 2'h0;
+// assign pipeline_stop = (rs1_id_ex_hazard | rs2_id_ex_hazard) ? 2'h3 :
+//                        (rs1_id_mem_hazard | rs2_id_mem_hazard) ? 2'h2 :
+//                        (rs1_id_wb_hazard | rs2_id_wb_hazard) ? 2'h1 : 2'h0;
+
+assign pipeline_stop_branch = branch_hazard ? 2'h2 : 2'h0;
+
+// forward data 
+assign id_opA = rs1_id_ex_hazard ? resC : 
+                rs1_id_mem_hazard ? mem_resC_o :
+                rs1_id_wb_hazard ? wb_wD :
+                rD1;
+
+assign id_opB = rs2_id_ex_hazard ? resC : 
+                rs2_id_mem_hazard ? mem_resC_o :
+                rs2_id_wb_hazard ? wb_wD :
+                (id_op_B_sel == 1'b0) ? ext : rD2;
+
 
 
 
@@ -168,18 +230,25 @@ PC u_pc(
     .clk(clk),
     .rst_n(rst_n),
     .npc(npc),
+    .pipeline_stop_i(pipeline_stop),
+    .pipeline_stop_branch_i(pipeline_stop_branch),
+
     // output
     .pc(pc_o)
     // .next_iter(debug_wb_have_inst)
 );
 
 assign jump = alu_branch & ex_ctrl_branch;
+wire [31:0] ex_pc = ex_pc4 + ~3'h4 + 1;
 NPC u_npc(
+    // input
     .jump(jump),
-    .pc_sel(pc_sel),
-    .pc(pc_o),
-    .imm(ext),
-    .base_adr(rD1),
+    .pc_sel(ex_pc_sel),
+    .pc_now(pc_o),
+    .imm(ex_ext),
+    .base_adr(ex_opA),
+    .ex_pc(ex_pc),
+    // output
     .npc(npc),
     .pc4(pc4)
 );
@@ -197,7 +266,9 @@ CTRL u_ctrl(
     .alu_ctrl(id_alu_ctrl),
     .op_B_sel(id_op_B_sel),
     .sext_op(sext_op),
-    .reg_we(id_reg_we)
+    .reg_we(id_reg_we),
+    .rD1_re(rD1_re),
+    .rD2_re(rD2_re)
 );
 
 SEXT u_sext(
@@ -210,17 +281,21 @@ assign wD = (mem_reg_write == 2'b00) ? mem_resC_o :
             (mem_reg_write == 2'b01) ? mem_pc4  :    
             (mem_reg_write == 2'b10) ? RD_i   : 
             (mem_reg_write == 2'b11) ? mem_ext : 32'h0000_0000;
+// debug
+wire [31:0] debug_x4;
 RF u_rf(
     // input
     .clk(clk),
     .rR1(id_inst[19:15]),
     .rR2(id_inst[24:20]),
-    .wR(id_inst[11:7]),
+    .wR(wb_wR), 
     .WE(wb_reg_we),
     .WD(wb_wD),
     // output
     .rD1(rD1),
-    .rD2(rD2)
+    .rD2(rD2),
+    // debug
+    .debug_x4(debug_x4)
 );
 
 ALU u_alu(
@@ -233,12 +308,24 @@ ALU u_alu(
 
 
 // output of the cpu
-assign debug_wb_have_inst = 1'b1;
-assign debug_wb_pc = pc_o;
+assign debug_wb_have_inst = wb_pc4_debug[31] != 1'b1 && wb_pc4_debug != 0;
+// assign debug_wb_have_inst = 1'b1;
+assign debug_wb_pc = wb_pc4_debug + ~3'h4 + 1;
+// assign debug_wb_pc = id_pc4 - 3'h4;
+// assign debug_wb_pc = pc_o;
 assign debug_wb_ena = wb_reg_we;
-assign debug_wb_reg = id_inst[11:7];
-// assign debug_wb_value = wD;
+assign debug_wb_reg = wb_wR;
+// assign debug_wb_reg = ex_pc_sel;
+// assign debug_wb_reg = pipeline_stop_branch;
+// assign debug_wb_value = ex_alu_ctrl;
+// assign debug_wb_value = id_inst[24:20];
 assign debug_wb_value = wb_wD;
+// assign debug_wb_value ={24'h0, 3'b000, pipeline_stop, 3'b000,pipeline_stop_branch};
+// assign debug_wb_value = RD_i;
+// assign debug_wb_value = ex_pc_sel;
+// assign debug_wb_value = {3'h0, id_inst[11:7], 3'b000, ex_wR, 3'b000, mem_wR, 3'b000, wb_wR};
+// assign debug_wb_value = {3'h0, id_inst[11:7], 3'b000, ex_wR, 3'b000, id_ctrl_branch, 3'b000, ex_ctrl_branch};
+// assign debug_wb_value = id_inst;
 
 
 endmodule

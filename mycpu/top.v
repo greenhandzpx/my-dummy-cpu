@@ -40,7 +40,9 @@ CPU u_cpu(
 
 // 下面两个模块，只需要实例化并连线，不需要添加文件
 IROM imem(
+    // input 
     .pc (pc),
+    // output
     .inst (if_inst)
 );
 // inst_mem imem(
@@ -49,11 +51,13 @@ IROM imem(
 // );
 
 data_mem dmem(
+    // input
     .clk(clk),
     .a  (resC[15:2]),
-    .spo(RD),
     .we (mem_write),
-    .d  (rD2)
+    .d  (rD2),
+    // output
+    .spo(RD)
 );
 
 endmodule

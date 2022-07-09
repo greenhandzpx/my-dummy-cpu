@@ -9,8 +9,16 @@ module CTRL(
     output wire [3:0] alu_ctrl,  
     output wire op_B_sel,   // select operandB
     output wire [2:0] sext_op,
-    output wire reg_we      // rf's we
+    output wire reg_we,      // rf's we
+    output wire rD1_re,  // register 1 read enable
+    output wire rD2_re   // register 2 read enable
 );
+
+// Only lui & jal don't have rs1.
+assign rD1_re = (opcode == 7'b0110111 || opcode == 7'b1101111) ? 1'b0 : 1'b1;
+// Only R series & B series have rs2
+assign rD2_re = (opcode == 7'b0110011 || opcode == 7'b1100011) ? 1'b1 : 1'b0;
+
 
 assign reg_we = (opcode == 7'b1100011 || opcode == 7'b0100011) ? 1'b0 : 1'b1;
 //                    ^ b series               ^ sw
@@ -33,7 +41,9 @@ assign reg_write = (opcode[6:4] == 3'b000) ? 2'b10 :
 
 assign mem_write = (opcode[6:4] == 3'b010) ? 1'b1 : 1'b0;
 
-assign branch = ({opcode[6:4], opcode[2]} == 4'b1100) ? 1'b1 : 1'b0;
+// assign branch = ({opcode[6:4], opcode[2]} == 4'b1100) ? 1'b1 : 1'b0;
+// here jal & jalr aslo set the branch '1'(to be compatible with pipeline_stop_branch)
+assign branch = (opcode == 7'b1100011 || opcode == 7'b1100111 || opcode == 7'b1101111) ? 1'b1 : 1'b0;
 
 // 0000 ---> add
 // 0001 ---> sub
