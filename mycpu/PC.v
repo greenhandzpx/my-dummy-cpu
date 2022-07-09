@@ -2,8 +2,8 @@ module PC (
     input wire clk,
     input wire rst_n,
     input wire[31:0] npc,
-    input wire [1:0] pipeline_stop_i,
-    input wire [1:0] pipeline_stop_branch_i,
+    input wire pipeline_stop_i,
+    input wire pipeline_stop_branch_i,
 
     output reg[31:0] pc
     // output reg next_iter

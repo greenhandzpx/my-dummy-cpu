@@ -16,7 +16,6 @@ module ID_EX(
   input wire [31:0] id_ext_i,
   input wire [31:0] id_pc4_i,
   input wire [4:0] id_wR_i,
-  input wire id_debug_wb_have_inst_i,
   input wire id_mem_read_i,
 
   output reg [1:0] ex_pc_sel_o,
@@ -32,7 +31,6 @@ module ID_EX(
   output reg [31:0] ex_ext_o,
   output reg [31:0] ex_pc4_o,
   output reg [4:0] ex_wR_o,
-  output reg ex_debug_wb_have_inst_o,
   output reg ex_mem_read_o
 );
 
@@ -188,17 +186,6 @@ always @(posedge clk or negedge rst_n) begin
     end
     else begin
         ex_wR_o <= id_wR_i;
-    end
-end
-always @(posedge clk or negedge rst_n) begin
-    if (~rst_n) begin
-        ex_debug_wb_have_inst_o <= 1'b0;
-    end
-    else if (pipeline_stop_i) begin
-        ex_debug_wb_have_inst_o <= ex_debug_wb_have_inst_o;
-    end
-    else begin
-        ex_debug_wb_have_inst_o <= id_debug_wb_have_inst_i;
     end
 end
 always @(posedge clk or negedge rst_n) begin
