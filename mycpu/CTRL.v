@@ -34,10 +34,10 @@ assign pc_sel = (opcode[6:5] == 2'b11) ? (opcode == 7'b1100111 ? 2'b10 :
 // 00 ---> rd = rs1 op rs2
 // 01 ---> rd = pc + 4
 // 10 ---> rd = mem
-// 11 ---> rd = imm (lui)
+// // 11 ---> rd = imm (lui)  X
 assign reg_write = (opcode[6:4] == 3'b000) ? 2'b10 : 
-                   (opcode[6:5] == 2'b11) ?  2'b01 : 
-                   (opcode == 7'b0110111) ?  2'b11 : 2'b00;
+                   (opcode[6:5] == 2'b11) ?  2'b01 : 2'b00;
+                  //  (opcode == 7'b0110111) ?  2'b11 : 2'b00;
 
 assign mem_write = (opcode[6:4] == 3'b010) ? 1'b1 : 1'b0;
 
@@ -57,6 +57,7 @@ assign branch = (opcode == 7'b1100011 || opcode == 7'b1100111 || opcode == 7'b11
 // 1001 ---> bne
 // 1010 ---> blt
 // 1011 ---> bge
+// 1111 ---> lui
 assign alu_ctrl = (opcode[6:5] == 2'b11) ? 
                     (
                      // b
@@ -65,6 +66,7 @@ assign alu_ctrl = (opcode[6:5] == 2'b11) ?
                   (func3[2:0] == 3'b100) ? 4'b1010 : 4'b1011 
                      ) : (
                      // not b
+                  (opcode == 7'b0110111) ? 4'b1111 :
                   (func3[2:0] == 3'b111) ? 4'b0010 :
                   (func3[2:0] == 3'b110) ? 4'b0011 :
                   (func3[2:0] == 3'b100) ? 4'b0100 :
@@ -92,8 +94,8 @@ assign alu_ctrl = (opcode[6:5] == 2'b11) ?
 
 // 0 ---> imm
 // 1 ---> rD2
-assign op_B_sel = (opcode[6:4] == 3'b001 || func3[2:0] == 3'b010) ? 1'b0 : 1'b1;
-//                                              ^ lw/sw
+assign op_B_sel = (opcode == 7'b0110111 || opcode[6:4] == 3'b001 || func3[2:0] == 3'b010) ? 1'b0 : 1'b1;
+//                            ^ lui                      ^ lw/sw
 
 // 000 ---> no imm
 // 001 ---> 0000_0000_0000_0000_0000_inst[31:20]

@@ -26,6 +26,7 @@ always @(*) begin
         4'b1001: branch_reg = opA == opB ? 1'b0 : 1'b1;
         4'b1010: branch_reg = ($signed(opA)) < ($signed(opB)) ? 1'b1 : 1'b0;
         4'b1011: branch_reg = ($signed(opA)) < ($signed(opB)) ? 1'b0 : 1'b1;
+        4'b1111: resC_reg = opB; // lui
         // `ADD: resC_reg = opA + opB;
         // `SUB: resC_reg = opA + ~opB + 1'b1;
         // `AND: resC_reg = opA & opB;

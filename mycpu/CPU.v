@@ -189,7 +189,7 @@ MEM_WB u_mem_wb(
     .wb_pc4_o_debug(wb_pc4_debug)
 );
 
-// hazards
+// data hazards
 // 1. ID EX hazard
 wire rs1_id_ex_hazard = (ex_wR != 5'h0 && ex_wR == id_inst[19:15]) & ex_reg_we & rD1_re;
 wire rs2_id_ex_hazard = (ex_wR != 5'h0 && ex_wR == id_inst[24:20]) & ex_reg_we & rD2_re;
@@ -199,6 +199,9 @@ wire rs2_id_mem_hazard = !rs2_id_ex_hazard & (mem_wR != 5'h0 && mem_wR == id_ins
 // 3. ID WB hazard
 wire rs1_id_wb_hazard = !rs1_id_mem_hazard & (wb_wR != 5'h0 && wb_wR == id_inst[19:15]) & wb_reg_we & rD1_re;
 wire rs2_id_wb_hazard = !rs2_id_mem_hazard & (wb_wR != 5'h0 && wb_wR == id_inst[24:20]) & wb_reg_we & rD2_re;
+// 4. load-use hazard
+
+// control hazards
 // jalr, jal, b series
 wire branch_hazard = (id_inst[6:0] == 7'b1100111 || id_inst[6:0] == 7'b1100011 || id_inst[6:0] == 7'b1101111) &
                         !ex_ctrl_branch;
@@ -279,8 +282,8 @@ SEXT u_sext(
 
 assign wD = (mem_reg_write == 2'b00) ? mem_resC_o :
             (mem_reg_write == 2'b01) ? mem_pc4  :    
-            (mem_reg_write == 2'b10) ? RD_i   : 
-            (mem_reg_write == 2'b11) ? mem_ext : 32'h0000_0000;
+            (mem_reg_write == 2'b10) ? RD_i   : 32'h0000_0000;
+            // (mem_reg_write == 2'b11) ? mem_ext : 32'h0000_0000;
 // debug
 wire [31:0] debug_x4;
 RF u_rf(
