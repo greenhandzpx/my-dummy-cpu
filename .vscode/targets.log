@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul  8 14:49:23 2022
+# Make data base, printed on Thu Jul 14 14:53:33 2022
 
 # Variables
 
@@ -40,8 +40,6 @@ PWD = $(shell pwd)
 OLDPWD = /mnt/g/vscode/Microsoft VS Code
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
-# environment
-VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
@@ -55,13 +53,11 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/greenhandzpx/CodeField/my-dummy-cpu
 # environment
-VSCODE_PIPE_LOGGING = true
-# environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-host_ip = 172.17.48.1
+host_ip = 172.23.32.1
 # environment
 MFLAGS = -pqrR
 # default
@@ -78,8 +74,6 @@ MAKEFILE_LIST := Makefile
 CONDA_SHLVL = 0
 # automatic
 @F = $(notdir $@)
-# environment
-VSCODE_VERBOSE_LOGGING = true
 # makefile (from 'Makefile', line 1)
 VSRC = $(wildcard vsrc/* mycpu/*) 
 # automatic
@@ -109,15 +103,13 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /home/greenhandzpx/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/opt/miniconda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/libnvvp:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/g/nodejs/:/mnt/g/new_python/Lib/site-packages/ffmpeg:/mnt/g/xshell/:/mnt/g/xftp/:/mnt/c/Program Files/MySQL/MySQL Server 8.0/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/g/Qt/6.0.4/mingw81_64/bin:/mnt/g/new_python/Scripts:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2019.5.0/:/mnt/g/git/Git/cmd:/mnt/e/python/Scripts/:/mnt/e/python/:/mnt/c/Users/86135/AppData/Local/Programs/Python/Python38/Scripts/:/mnt/c/Users/86135/AppData/Local/Programs/Python/Python38/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/g/new_python/Scripts/:/mnt/g/new_python/:/mnt/c/Users/86135/AppData/Local/Microsoft/WindowsApps:/mnt/g/vscode/Microsoft VS Code/bin:/mnt/g/mingw64/bin:/mnt/c/Users/86135/AppData/Roaming/npm:/mnt/g/ffmpeg-N-102809-gde8e6e67e7-win64-gpl/bin:/mnt/e/downloadFromBrowser/cmake-3.21.1-windows-x86_64/bin:/mnt/g/clion/CLion 2021.3.3/bin:/mnt/g/idea/IntelliJ IDEA 2021.3.2/bin:/mnt/g/git/Git/bin:/mnt/g/vscode/Microsoft VS Code/bin:/mnt/c/Users/86135/Documents/WindowsPowerShell/Modules/oh-my-posh/7.31.1:/mnt/c/java/jdk-17.0.2/bin:/mnt/g/pycharm/PyCharm 2021.3.2/bin:/mnt/g/ngrok/ngrok-stable-windows-amd64:/mnt/g/goland/GoLand 2021.3.4/bin:/mnt/g/neovim/nvim-win64/bin:/mnt/g/texlive/texlive/2022/bin/win32:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/greenhandzpx/Downloads/riscv-pk/build/dist/riscv64-linux-gnu/bin:/home/greenhandzpx/bin
+PATH = /home/greenhandzpx/.vscode-server/bin/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a/bin/remote-cli:/opt/miniconda/condabin:/home/greenhandzpx/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/libnvvp:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/g/nodejs/:/mnt/g/new_python/Lib/site-packages/ffmpeg:/mnt/g/xshell/:/mnt/g/xftp/:/mnt/c/Program Files/MySQL/MySQL Server 8.0/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/g/Qt/6.0.4/mingw81_64/bin:/mnt/g/new_python/Scripts:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2019.5.0/:/mnt/g/git/Git/cmd:/mnt/e/python/Scripts/:/mnt/e/python/:/mnt/c/Users/86135/AppData/Local/Programs/Python/Python38/Scripts/:/mnt/c/Users/86135/AppData/Local/Programs/Python/Python38/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/g/new_python/Scripts/:/mnt/g/new_python/:/mnt/c/Users/86135/AppData/Local/Microsoft/WindowsApps:/mnt/g/vscode/Microsoft VS Code/bin:/mnt/g/mingw64/bin:/mnt/c/Users/86135/AppData/Roaming/npm:/mnt/g/ffmpeg-N-102809-gde8e6e67e7-win64-gpl/bin:/mnt/e/downloadFromBrowser/cmake-3.21.1-windows-x86_64/bin:/mnt/g/clion/CLion 2021.3.3/bin:/mnt/g/idea/IntelliJ IDEA 2021.3.2/bin:/mnt/g/git/Git/bin:/mnt/g/vscode/Microsoft VS Code/bin:/mnt/c/Users/86135/Documents/WindowsPowerShell/Modules/oh-my-posh/7.31.1:/mnt/c/java/jdk-17.0.2/bin:/mnt/g/pycharm/PyCharm 2021.3.2/bin:/mnt/g/ngrok/ngrok-stable-windows-amd64:/mnt/g/goland/GoLand 2021.3.4/bin:/mnt/g/neovim/nvim-win64/bin:/mnt/g/texlive/texlive/2022/bin/win32:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/greenhandzpx/Downloads/riscv-pk/build/dist/riscv64-linux-gnu/bin:/home/greenhandzpx/bin:/home/greenhandzpx/.cargo/bin
 # default
 MAKEFILES := 
 # automatic
 ^F = $(notdir $^)
 # environment
-WT_SESSION = 0205c9b4-8b6b-4cfb-8113-335ea5ab5162
-# environment
-VSCODE_LOG_NATIVE = false
+WT_SESSION = 13d3d5ee-0423-444a-b731-f43ad95849c8
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -127,7 +119,7 @@ HOSTTYPE = x86_64
 # automatic
 +F = $(notdir $+)
 # environment
-WSL_INTEROP = /run/WSL/10_interop
+WSL_INTEROP = /run/WSL/27514_interop
 # makefile (from 'Makefile', line 4)
 TEST = addi
 # 'override' directive
@@ -143,8 +135,6 @@ USER = greenhandzpx
 # default
 MAKE_VERSION := 4.3
 # environment
-VSCODE_EXTHOST_WILL_SEND_SOCKET = true
-# environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # makefile (from 'Makefile', line 2)
 CSRC = $(wildcard golden_model/*.c) $(wildcard golden_model/stage/*.c) $(wildcard golden_model/peripheral/*.c) $(wildcard csrc/*.c csrc/*.cpp)
@@ -155,11 +145,13 @@ _CE_M =
 # makefile (from 'Makefile', line 5)
 TESTFILE = meminit.bin
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-3dd5b280-d1cd-4ef0-9bd5-7d535cbdc078.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-0fdd59e0-642c-4530-8e2a-8884e6dfee1b.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /home/greenhandzpx
+# environment
+ELECTRON_RUN_AS_NODE = 1
 # environment
 TERM = xterm-256color
 # makefile (from 'Makefile', line 3)
@@ -175,7 +167,7 @@ AM_HOME = /home/greenhandzpx/CodeField/ics2021/abstract-machine
 # default
 SUFFIXES := 
 # environment
-_P9K_TTY = /dev/pts/0
+_P9K_TTY = /dev/pts/6
 # environment
 WSL_DISTRO_NAME = ArchLinux
 # default
@@ -185,7 +177,7 @@ CONDA_EXE = /opt/miniconda/bin/conda
 # environment
 _CE_CONDA = 
 # variable set hash-table stats:
-# Load=86/1024=8%, Rehash=0, Collisions=2/120=2%
+# Load=82/1024=8%, Rehash=0, Collisions=1/116=1%
 
 # Pattern-specific Variable Values
 
@@ -195,13 +187,13 @@ _CE_CONDA =
 
 # golden_model (device 2064, inode 309942): 6 files, no impossibilities.
 # golden_model/peripheral (device 2064, inode 309949): 6 files, no impossibilities.
-# . (device 2064, inode 309762): 18 files, no impossibilities.
+# . (device 2064, inode 309762): 17 files, no impossibilities.
 # vsrc (device 2064, inode 309976): 3 files, no impossibilities.
 # mycpu (device 2064, inode 309960): 18 files, no impossibilities.
 # csrc (device 2064, inode 309939): 4 files, no impossibilities.
 # golden_model/stage (device 2064, inode 309954): 7 files, no impossibilities.
 
-# 62 files, no impossibilities in 7 directories.
+# 61 files, no impossibilities in 7 directories.
 
 # Implicit Rules
 
@@ -278,7 +270,6 @@ Makefile:
 #  Last modified 2022-07-07 12:26:12.07973714
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
 vsrc/ram.v:
@@ -286,6 +277,7 @@ vsrc/ram.v:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 # Not a target:
 golden_model/stage/WB.c:
 #  Implicit rule search has not been done.
@@ -446,12 +438,12 @@ golden_model/peripheral/result_monitor.c:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 89 / storage = 994 B / avg = 11 B
-# current buf: size = 8162 B / used = 994 B / count = 89 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 88 / storage = 976 B / avg = 11 B
+# current buf: size = 8162 B / used = 976 B / count = 88 / avg = 11 B
 
-# strcache performance: lookups = 119 / hit rate = 25%
+# strcache performance: lookups = 118 / hit rate = 25%
 # hash-table stats:
-# Load=89/8192=1%, Rehash=0, Collisions=1/119=1%
-# Finished Make data base on Fri Jul  8 14:49:23 2022
+# Load=88/8192=1%, Rehash=0, Collisions=1/118=1%
+# Finished Make data base on Thu Jul 14 14:53:33 2022
 
  
