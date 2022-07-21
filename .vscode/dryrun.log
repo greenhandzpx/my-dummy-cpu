@@ -1,6 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/greenhandzpx/Downloads/cdp-tests'
-verilator -cc --exe --build vsrc/ram.v mycpu/top.v  --top-module top golden_model/emu.c golden_model/stage/EX.c golden_model/stage/ID.c golden_model/stage/IF.c golden_model/stage/MEM.c golden_model/stage/WB.c golden_model/peripheral/onboard.c golden_model/peripheral/result_monitor.c csrc/test.cpp --trace -Wno-lint -Wno-style -Wno-TIMESCALEMOD +define+PATH=meminit.bin -CFLAGS -DPATH=meminit.bin -Imycpu -CFLAGS -I/home/greenhandzpx/Downloads/cdp-tests/golden_model/include
+make: Entering directory '/home/greenhandzpx/CodeField/my-dummy-cpu'
+verilator -cc --exe --build vsrc/ram.v mycpu/ALU.v mycpu/CPU.v mycpu/CTRL.v mycpu/DRAM.v mycpu/IROM.v mycpu/NPC.v mycpu/PC.v mycpu/RF.v mycpu/SEXT.v mycpu/cpuclk_sim.v mycpu/param.v mycpu/top.v  --top-module top golden_model/emu.c golden_model/stage/EX.c golden_model/stage/ID.c golden_model/stage/IF.c golden_model/stage/MEM.c golden_model/stage/WB.c golden_model/peripheral/onboard.c golden_model/peripheral/result_monitor.c csrc/test.cpp --trace -Wno-lint -Wno-style -Wno-TIMESCALEMOD +define+PATH=meminit.bin -CFLAGS -DPATH=meminit.bin -Imycpu -CFLAGS -I/home/greenhandzpx/CodeField/my-dummy-cpu/golden_model/include
 mkdir -p waveform
-make: Leaving directory '/home/greenhandzpx/Downloads/cdp-tests'
+make: Leaving directory '/home/greenhandzpx/CodeField/my-dummy-cpu'
  

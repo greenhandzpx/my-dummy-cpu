@@ -2,8 +2,7 @@ module PC (
     input wire clk,
     input wire rst_n,
     input wire[31:0] npc,
-    output reg[31:0] pc,
-    output reg next_iter
+    output reg[31:0] pc
 );
 
 
